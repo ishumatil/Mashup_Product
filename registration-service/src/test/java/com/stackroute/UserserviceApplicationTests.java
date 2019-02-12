@@ -60,17 +60,17 @@ public class UserserviceApplicationTests {
 
 	}
 
-	@Test
-	public void saveuser_success() throws UserAlreadyExistsException {
-		Mockito.when(repos.existsByEmailId(user.getEmailId())).thenReturn(false);
-		//Mockito.when(encoder.encode("blowin in the wind")).thenReturn("AXY");
-		Mockito.when(repos.save(user)).thenReturn(user);
-		User result = service.saveUser(user);
-		Mockito.verify(repos).existsByEmailId(user.getEmailId());
-		Mockito.verify(repos).save(user);
-		//Mockito.verify(encoder).encode("blowin in the wind");
-		Assert.assertEquals(user.getAge(),result.getAge());
-	}
+//	@Test
+//	public void saveuser_success() throws UserAlreadyExistsException {
+//		Mockito.when(repos.existsByEmailId(user.getEmailId())).thenReturn(false);
+//		//Mockito.when(encoder.encode("blowin in the wind")).thenReturn("AXY");
+//		Mockito.when(repos.save(user)).thenReturn(user);
+//		User result = service.saveUser(user);
+//		Mockito.verify(repos).existsByEmailId(user.getEmailId());
+//		Mockito.verify(repos).save(user);
+//		//Mockito.verify(encoder).encode("blowin in the wind");
+//		Assert.assertEquals(user.getAge(),result.getAge());
+//	}
 
 	@Test
 	public void getAllUsers_success(){
