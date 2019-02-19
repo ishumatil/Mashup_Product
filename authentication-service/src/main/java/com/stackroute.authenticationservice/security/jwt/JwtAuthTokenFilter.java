@@ -6,7 +6,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.stackroute.authenticationservice.security.services.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,8 +53,8 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 	private String getJwt(HttpServletRequest request) {
 		String authHeader = request.getHeader("Authorization");
 
-		if (authHeader != null && authHeader.startsWith("Bearer ")) {
-			return authHeader.replace("Bearer ", "");
+		if (authHeader != null && authHeader.startsWith(" ")) {
+			return authHeader.replace("Granted", "");
 		}
 
 		return null;

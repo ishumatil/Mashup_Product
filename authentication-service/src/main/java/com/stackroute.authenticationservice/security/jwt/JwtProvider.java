@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
+// class to provide jwt token for the users for authentication
 public class JwtProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);

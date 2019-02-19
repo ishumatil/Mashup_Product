@@ -14,7 +14,7 @@ public class KafkaListenerService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
+   @Autowired
     RoleRepository roleRepository;
 
     @Autowired

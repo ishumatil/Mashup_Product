@@ -3,7 +3,6 @@ package com.stackroute.authenticationservice.security.services;
 
 import com.stackroute.authenticationservice.model.User;
 import com.stackroute.authenticationservice.repository.UserRepository;
-import com.stackroute.authenticationservice.security.services.UserPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	@Transactional
+//	exception class for user if not find by username
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		User user = userRepository.findByUsername(username).orElseThrow(

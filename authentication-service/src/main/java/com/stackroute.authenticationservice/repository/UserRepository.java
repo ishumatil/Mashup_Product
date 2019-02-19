@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
+// userrepository interface who extends Jpa repository and search any user by its username in database
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     Boolean existsByUsername(String username);

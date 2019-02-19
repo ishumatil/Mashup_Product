@@ -1,17 +1,11 @@
 package com.stackroute.authenticationservice.controller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.validation.Valid;
-
 import com.stackroute.authenticationservice.message.request.LoginForm;
 import com.stackroute.authenticationservice.message.response.JwtResponse;
-import com.stackroute.authenticationservice.repository.RoleRepository;
 import com.stackroute.authenticationservice.repository.UserRepository;
 import com.stackroute.authenticationservice.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,14 +32,12 @@ public class AuthRestAPIs {
 	UserRepository userRepository;
 
 	@Autowired
-	RoleRepository roleRepository;
-
-	@Autowired
 	PasswordEncoder encoder;
 
 	@Autowired
 	JwtProvider jwtProvider;
 
+// post mapping class for signin of a user have parameters username and password
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
@@ -54,9 +46,11 @@ public class AuthRestAPIs {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
+// generate jwt token string for the user that are logging in
 		String jwt = jwtProvider.generateJwtToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+//	 return jwt token and the username from the user details
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
 }
